@@ -1,0 +1,47 @@
+/* Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  padding: 20px 40px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header__logo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__avatar-logo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__button {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header__button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.header__name {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.header__avatar {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+}
