@@ -3,6 +3,7 @@
 import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
+
 const Header = () => {
   return (
     <header className="header">

@@ -4,18 +4,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  background-color: white;
 }
 
 .header__logo {
-  border-radius: 8px;
-  border: 2px solid transparent;
-  background-color: transparent;
   width: 75px;
 }
 
-.header__logo:hover {
+.header__logo img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.header__logo:hover img {
   border-color: #8f05f2;
   cursor: pointer;
+}
+
+.header__nav {
+  display: flex;
 }
 
 .header__button {
@@ -25,6 +36,7 @@
   font-size: 18px;
   margin-left: 10px;
   color: black;
+  transition: border-color 0.3s;
 }
 
 .header__button:hover {
