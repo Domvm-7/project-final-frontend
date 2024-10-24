@@ -5,8 +5,9 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Preloader from "./components/Preloader/Preloader";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Main from "./components/Main/Main";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,13 +23,16 @@ function App() {
 
   return (
     <>
-      {/* <Router>
+      <Router>
+        <Header />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/another" element={<AnotherPage />} />
+          {/* Add your routes here */}
+          {/* <Route path="/" element={<Main />} />
+          <Route path="/another" element={<AnotherPage />} /> */}
         </Routes>
-      </Router> */}
-      <div>
+        <Footer />
+      </Router>
+      {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -47,7 +51,7 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
+      </p> */}
     </>
   );
 }
