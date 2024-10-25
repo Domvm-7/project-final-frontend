@@ -8,6 +8,24 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal__close {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal__open {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .modal__content {
@@ -15,14 +33,16 @@
   max-width: 496px;
   border-radius: 20px;
   padding: 5px 30px 30px 30px;
+  position: relative; /* Ensure the close button is properly positioned inside */
 }
 
 .modal__close-button {
-  position: relative;
+  position: absolute; /* Changed to absolute for consistent positioning */
   top: 20px;
-  left: 425px;
+  right: 30px; /* Adjusted for better alignment */
   background-image: url("/src/images/close-button.svg");
   background-repeat: no-repeat;
+  background-color: transparent;
   border: none;
   height: 20px;
   width: 20px;
@@ -30,22 +50,26 @@
 
 .modal__close-button:hover {
   cursor: pointer;
+  opacity: 0.7;
 }
 
-.modal__close {
-  visibility: hidden;
+.modal__close-button::after {
+  content: "Close"; /* Accessible text for screen readers */
+  display: none;
 }
 
 .modal__title {
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .modal__label {
   display: flex;
   flex-direction: column;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .modal__input {

@@ -1,6 +1,6 @@
 // App.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -13,8 +13,8 @@ function App() {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  // Simulate loading (for example, after 3 seconds, the preloader disappears)
-  useState(() => {
+  // Simulate loading (e.g., after 3 seconds, the preloader disappears)
+  useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
   }, []);
 
