@@ -37,9 +37,9 @@
 }
 
 .modal__close-button {
-  position: absolute; /* Changed to absolute for consistent positioning */
+  position: absolute;
   top: 20px;
-  right: 30px; /* Adjusted for better alignment */
+  right: 30px;
   background-image: url("/src/images/close-button.svg");
   background-repeat: no-repeat;
   background-color: transparent;
@@ -54,15 +54,18 @@
 }
 
 .modal__close-button::after {
-  content: "Close"; /* Accessible text for screen readers */
+  content: "Close";
   display: none;
 }
 
 .modal__title {
-  font-size: 16px;
-  margin-top: 0;
+  font-size: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
   text-align: center;
+  color: black;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .modal__label {
@@ -70,6 +73,9 @@
   flex-direction: column;
   font-weight: bold;
   margin-bottom: 10px;
+  color: black;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .modal__input {
@@ -81,17 +87,23 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .modal__submit-button {
   width: 124px;
   height: 36px;
-  color: white;
+  color: black;
   background-color: gray;
   border: none;
   border-radius: 5px;
   font-size: 15px;
   margin-top: 30px;
+  position: relative;
+  left: 160px;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .modal__submit-button:hover {
