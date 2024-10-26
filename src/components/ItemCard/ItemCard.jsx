@@ -47,7 +47,7 @@ const ItemCard = () => {
           </button>
         </div>
       ) : (
-        <p>{content}</p>
+        <p className="item__card-info">{content}</p>
       )}
     </div>
   );
