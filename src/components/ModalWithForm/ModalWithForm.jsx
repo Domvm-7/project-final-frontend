@@ -1,6 +1,6 @@
 // ModalWithForm.jsx
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./ModalWithForm.css";
 
 const ModalWithForm = ({
@@ -12,6 +12,24 @@ const ModalWithForm = ({
   isOpen,
   onSubmit,
 }) => {
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    // Cleanup event listener on component unmount or when modal closes
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
+
   return (
     <div
       className={`modal modal__type_${name} ${
