@@ -6,19 +6,16 @@ import "./ItemCard.css";
 const ItemCard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState("This is a card. Click to edit.");
-  const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/150"); // Default image
+  const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/150");
 
   const handleEdit = () => setIsEditing(!isEditing);
   const handleChange = (e) => setContent(e.target.value);
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageUrl(reader.result); // Set the uploaded image
-      };
-      reader.readAsDataURL(file);
+      reader.onloadend = () => setImageUrl(reader.result);
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
@@ -34,7 +31,20 @@ const ItemCard = () => {
             onBlur={() => setIsEditing(false)}
             autoFocus
           />
-          <input type="file" onChange={handleImageChange} />
+          {/* Hidden file input */}
+          <input
+            type="file"
+            onChange={handleImageChange}
+            id="fileInput"
+            style={{ display: "none" }}
+          />
+          {/* Custom button to trigger file input */}
+          <button
+            className="item__card-file-button"
+            onClick={() => document.getElementById("fileInput").click()}
+          >
+            Edit Image: Choose File
+          </button>
         </div>
       ) : (
         <p>{content}</p>
