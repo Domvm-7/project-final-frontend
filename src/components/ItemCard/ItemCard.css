@@ -1,5 +1,7 @@
 /* ItemCard.css */
 
+/* ItemCard.css */
+
 .item__card {
   max-width: 496px;
   padding: 10px;
@@ -35,13 +37,14 @@
 
 .item__card-input {
   width: 100%; /* Make input take full width */
-  min-height: 40px; /* Minimum height for input */
+  min-height: 30px; /* Reduced minimum height */
   padding: 5px; /* Padding inside input */
   font-size: 16px; /* Font size */
   border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden; /* Prevent scrollbars */
   resize: none; /* Prevent manual resizing */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
 .item__card-edit input[type="file"] {
@@ -52,11 +55,11 @@
   border-radius: 8px;
   border: 2px solid transparent;
   background-color: transparent;
-  font-size: 18px;
+  font-size: 16px; /* Reduced font size for button */
   margin-left: 10px;
   color: black;
   transition: border-color 0.3s;
-  padding: 8px 16px;
+  padding: 6px 12px; /* Adjusted padding for the button */
   cursor: pointer;
 }
 
