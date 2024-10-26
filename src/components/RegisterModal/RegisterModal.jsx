@@ -33,12 +33,12 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
 
   return (
     <ModalWithForm
-      buttonText="Register"
+      buttonText="Sign Up"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      name="register"
-      title="Register"
+      name="sign up"
+      title="Sign Up"
     >
       <label className="modal__label">
         Username

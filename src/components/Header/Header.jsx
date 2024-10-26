@@ -15,7 +15,7 @@ const Header = ({ onRegisterClick, onLoginClick }) => {
           Login
         </button>
         <button className="header__button" onClick={onRegisterClick}>
-          Register
+          Sign Up
         </button>
       </nav>
     </header>
