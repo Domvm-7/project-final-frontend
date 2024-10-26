@@ -9,23 +9,14 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.modal__close {
-  visibility: hidden;
+  visibility: hidden; /* Hide initially */
   opacity: 0;
-  display: none;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-.modal__open {
+.modal.modal__open {
   visibility: visible;
   opacity: 1;
-  display: flex;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .modal__content {
