@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Preloader from "./components/Preloader/Preloader";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
 import LoginModal from "./components/LoginModal/LoginModal";
+import Main from "./components/Main/Main"; // Import Main component
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,13 +46,10 @@ function App() {
         onRegisterClick={openRegisterModal}
         onLoginClick={openLoginModal}
       />
-      <main>
-        {/* Modals */}
-        <RegisterModal isOpen={isRegisterOpen} onClose={closeRegisterModal} />
-        <LoginModal isOpen={isLoginOpen} onClose={closeLoginModal} />
-
-        <Routes>{/* Define your routes here */}</Routes>
-      </main>
+      <Main /> {/* Insert Main component here */}
+      {/* Modals */}
+      <RegisterModal isOpen={isRegisterOpen} onClose={closeRegisterModal} />
+      <LoginModal isOpen={isLoginOpen} onClose={closeLoginModal} />
       <Footer />
     </Router>
   );
