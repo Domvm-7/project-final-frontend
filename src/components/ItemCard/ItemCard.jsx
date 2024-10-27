@@ -48,6 +48,18 @@ const ItemCard = () => {
       </div>
       {isEditing && (
         <div className="item__card-edit">
+          <button
+            className="item__card-file-button"
+            onClick={() => document.getElementById("fileInput").click()}
+          >
+            Choose Image
+          </button>
+          <input
+            type="file"
+            onChange={handleImageChange}
+            id="fileInput"
+            style={{ display: "none" }}
+          />
           <textarea
             ref={textareaRef}
             value={draftContent}
@@ -55,18 +67,6 @@ const ItemCard = () => {
             autoFocus
             className="item__card-input"
           />
-          <input
-            type="file"
-            onChange={handleImageChange}
-            id="fileInput"
-            style={{ display: "none" }}
-          />
-          <button
-            className="item__card-file-button"
-            onClick={() => document.getElementById("fileInput").click()}
-          >
-            Choose Image
-          </button>
           <button className="item__card-submit-button" onClick={handleSave}>
             Save Changes
           </button>
