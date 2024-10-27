@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ItemCard.css";
 
-const ItemCard = () => {
+const ItemCard = ({ onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState("This is a card. Click to edit.");
   const [draftContent, setDraftContent] = useState(content);
@@ -72,6 +72,9 @@ const ItemCard = () => {
           </button>
         </div>
       )}
+      <button className="item__card-delete-button" onClick={onDelete}>
+        Delete
+      </button>
     </div>
   );
 };

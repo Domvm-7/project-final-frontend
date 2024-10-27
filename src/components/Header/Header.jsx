@@ -4,7 +4,7 @@ import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
 
-const Header = ({ onRegisterClick, onLoginClick }) => {
+const Header = ({ onRegisterClick, onLoginClick, onAddItemClick }) => {
   return (
     <header className="header">
       <div className="header__logo">
@@ -16,6 +16,9 @@ const Header = ({ onRegisterClick, onLoginClick }) => {
         </button>
         <button className="header__button" onClick={onRegisterClick}>
           Sign Up
+        </button>
+        <button className="header__button" onClick={onAddItemClick}>
+          Add Item
         </button>
       </nav>
     </header>

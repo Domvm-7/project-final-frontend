@@ -1,41 +1,38 @@
 // App.jsx
 
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Preloader from "./components/Preloader/Preloader";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
 import LoginModal from "./components/LoginModal/LoginModal";
-import Main from "./components/Main/Main"; // Import Main component
+import Main from "./components/Main/Main";
+import ItemCard from "./components/ItemCard/ItemCard";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [itemCards, setItemCards] = useState([]);
 
-  // Simulate loading (e.g., after 3 seconds, the preloader disappears)
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
   }, []);
 
-  const openRegisterModal = () => {
-    setIsRegisterOpen(true);
+  const openRegisterModal = () => setIsRegisterOpen(true);
+  const closeRegisterModal = () => setIsRegisterOpen(false);
+  const openLoginModal = () => setIsLoginOpen(true);
+  const closeLoginModal = () => setIsLoginOpen(false);
+
+  const addItemCard = () => {
+    setItemCards((prevCards) => [...prevCards, { id: Date.now() }]);
   };
 
-  const closeRegisterModal = () => {
-    setIsRegisterOpen(false);
+  const deleteItemCard = (id) => {
+    setItemCards((prevCards) => prevCards.filter((card) => card.id !== id));
   };
 
-  const openLoginModal = () => {
-    setIsLoginOpen(true);
-  };
-
-  const closeLoginModal = () => {
-    setIsLoginOpen(false);
-  };
-
-  // If loading, show the preloader
   if (isLoading) {
     return <Preloader />;
   }
@@ -45,9 +42,14 @@ function App() {
       <Header
         onRegisterClick={openRegisterModal}
         onLoginClick={openLoginModal}
+        onAddItemClick={addItemCard}
       />
-      <Main /> {/* Insert Main component here */}
-      {/* Modals */}
+      <Main />
+      <div className="item-cards-container">
+        {itemCards.map((card) => (
+          <ItemCard key={card.id} onDelete={() => deleteItemCard(card.id)} />
+        ))}
+      </div>
       <RegisterModal isOpen={isRegisterOpen} onClose={closeRegisterModal} />
       <LoginModal isOpen={isLoginOpen} onClose={closeLoginModal} />
       <Footer />
