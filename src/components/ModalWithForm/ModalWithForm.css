@@ -32,13 +32,13 @@
 .modal__close-button {
   position: absolute;
   top: 20px;
-  right: 30px;
+  right: 25px;
   background-image: url("/src/images/close-button.svg");
   background-repeat: no-repeat;
   background-color: transparent;
   border: 2px solid transparent;
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
 }
 
 .modal__close-button:hover {
@@ -54,7 +54,7 @@
 
 .modal__title {
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 20px;
   text-align: center;
   color: black;
@@ -80,23 +80,22 @@
   width: 440px;
   margin-top: 10px;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 500;
   font-family: inherit;
 }
 
 .modal__submit-button {
-  width: 100%; /* Fills the width of the modal */
+  width: 100%;
   color: black;
   background-color: transparent;
   border: 2px solid transparent;
   border-radius: 8px;
   font-size: 16px;
-  padding: 6px 12px; /* Matches item card padding */
+  padding: 6px 12px;
   font-weight: 500;
   font-family: inherit;
   text-align: center;
-  margin-top: 15px;
 }
 
 .modal__submit-button:hover {
