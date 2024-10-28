@@ -8,11 +8,23 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
     username: "",
     email: "",
     password: "",
-    avatar: "",
+    avatar: null,
   });
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({ ...formData, avatar: file });
+      const reader = new FileReader();
+      reader.onloadend = () => setAvatarPreview(reader.result);
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -26,8 +38,9 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         username: "",
         email: "",
         password: "",
-        avatar: "",
+        avatar: null,
       });
+      setAvatarPreview(null);
     }
   }, [isOpen]);
 
@@ -74,15 +87,27 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         />
       </label>
       <label className="modal__label">
-        Avatar URL
+        Choose Avatar
+        <button
+          type="button"
+          className="modal__file-button"
+          onClick={() => document.getElementById("avatarInput").click()}
+        >
+          Choose Avatar
+        </button>
         <input
-          className="modal__input"
-          type="text"
-          name="avatar"
-          placeholder="Avatar URL"
-          value={formData.avatar}
-          onChange={handleChange}
+          type="file"
+          id="avatarInput"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
         />
+        {avatarPreview && (
+          <img
+            src={avatarPreview}
+            alt="Avatar Preview"
+            className="modal__avatar-preview"
+          />
+        )}
       </label>
     </ModalWithForm>
   );
