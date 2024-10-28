@@ -70,11 +70,11 @@ const ItemCard = ({ onDelete }) => {
           <button className="item__card-submit-button" onClick={handleSave}>
             Save Changes
           </button>
+          <button className="item__card-delete-button" onClick={onDelete}>
+            Delete
+          </button>
         </div>
       )}
-      <button className="item__card-delete-button" onClick={onDelete}>
-        Delete
-      </button>
     </div>
   );
 };
