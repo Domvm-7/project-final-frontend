@@ -88,26 +88,28 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
       </label>
       <label className="modal__label">
         Choose Avatar
-        <button
-          type="button"
-          className="modal__file-button"
-          onClick={() => document.getElementById("avatarInput").click()}
-        >
-          Choose Avatar
-        </button>
-        <input
-          type="file"
-          id="avatarInput"
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-        />
-        {avatarPreview && (
-          <img
-            src={avatarPreview}
-            alt="Avatar Preview"
-            className="modal__avatar-preview"
+        <div className="modal__avatar-container">
+          <button
+            type="button"
+            className="modal__file-button"
+            onClick={() => document.getElementById("avatarInput").click()}
+          >
+            Choose Avatar
+          </button>
+          <input
+            type="file"
+            id="avatarInput"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
           />
-        )}
+          {avatarPreview && (
+            <img
+              src={avatarPreview}
+              alt="Avatar Preview"
+              className="modal__avatar-preview"
+            />
+          )}
+        </div>
       </label>
     </ModalWithForm>
   );
