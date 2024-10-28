@@ -11,14 +11,15 @@ const Header = ({ onRegisterClick, onLoginClick, onAddItemClick }) => {
         <img src={logo} alt="logo" />
       </div>
       <nav className="header__nav">
+        {" "}
+        <button className="header__button" onClick={onAddItemClick}>
+          Add Item
+        </button>
         <button className="header__button" onClick={onLoginClick}>
           Login
         </button>
         <button className="header__button" onClick={onRegisterClick}>
           Sign Up
-        </button>
-        <button className="header__button" onClick={onAddItemClick}>
-          Add Item
         </button>
       </nav>
     </header>

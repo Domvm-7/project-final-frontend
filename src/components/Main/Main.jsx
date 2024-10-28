@@ -4,12 +4,15 @@ import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
 
-const Main = () => {
+const Main = ({ itemCards, onDelete }) => {
   return (
     <main className="main">
       <h1 className="main__title">Main Content</h1>
-      <ItemCard />
-      {/* Add more <ItemCard /> components if needed */}
+      <div className="item-cards-container">
+        {itemCards.map((card) => (
+          <ItemCard key={card.id} onDelete={() => onDelete(card.id)} />
+        ))}
+      </div>
     </main>
   );
 };

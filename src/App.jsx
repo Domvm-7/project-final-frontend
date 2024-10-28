@@ -8,7 +8,6 @@ import Preloader from "./components/Preloader/Preloader";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
 import LoginModal from "./components/LoginModal/LoginModal";
 import Main from "./components/Main/Main";
-import ItemCard from "./components/ItemCard/ItemCard";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,12 +43,7 @@ function App() {
         onLoginClick={openLoginModal}
         onAddItemClick={addItemCard}
       />
-      <Main />
-      <div className="item-cards-container">
-        {itemCards.map((card) => (
-          <ItemCard key={card.id} onDelete={() => deleteItemCard(card.id)} />
-        ))}
-      </div>
+      <Main itemCards={itemCards} onDelete={deleteItemCard} />
       <RegisterModal isOpen={isRegisterOpen} onClose={closeRegisterModal} />
       <LoginModal isOpen={isLoginOpen} onClose={closeLoginModal} />
       <Footer />
