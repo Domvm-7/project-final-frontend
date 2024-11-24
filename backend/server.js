@@ -20,6 +20,27 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    // Replace <username>, <password>, and <dbname> with your MongoDB credentials.
+    const conn = await mongoose.connect(
+      "mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1); // Exit process if connection fails
+  }
+};
+
+module.exports = connectDB;
+
 // Use routes
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
