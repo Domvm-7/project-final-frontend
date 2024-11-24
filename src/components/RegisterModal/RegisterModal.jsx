@@ -1,9 +1,9 @@
 // RegisterModal.jsx
-
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { register } from "/src/api/auth.js";
 
-const RegisterModal = ({ isOpen, onClose, onRegister }) => {
+const RegisterModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -11,6 +11,8 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
     avatar: null,
   });
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const [error, setError] = useState(null); // For error handling
+  const [success, setSuccess] = useState(false); // To track registration success
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,9 +29,26 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onRegister(formData);
+
+    const data = new FormData();
+    data.append("username", formData.username);
+    data.append("email", formData.email);
+    data.append("password", formData.password);
+    if (formData.avatar) {
+      data.append("avatar", formData.avatar);
+    }
+
+    try {
+      await register(data); // Call the API function from auth.js
+      setSuccess(true);
+      setError(null);
+      onClose();
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to register");
+      setSuccess(false);
+    }
   };
 
   useEffect(() => {
@@ -41,6 +60,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         avatar: null,
       });
       setAvatarPreview(null);
+      setError(null);
     }
   }, [isOpen]);
 
@@ -111,6 +131,8 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           )}
         </div>
       </label>
+      {error && <p className="modal__error">{error}</p>}
+      {success && <p className="modal__success">Registration successful!</p>}
     </ModalWithForm>
   );
 };
