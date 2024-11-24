@@ -15,6 +15,16 @@ function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [itemCards, setItemCards] = useState([]);
 
+  const handleLogin = async (formData) => {
+    try {
+      const { data } = await login(formData);
+      localStorage.setItem("token", data.token);
+      setUser(data.user); // Optional: if user details are returned
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
   }, []);
