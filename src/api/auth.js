@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "http://localhost:5173/api/auth";
 
 export const register = (formData) =>
   axios.post(`${API_URL}/register`, formData);
