@@ -4,15 +4,15 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
-const itemRoutes = require("./routes/itemRoutes"); // Additional routes for items
+const itemRoutes = require("./routes/itemRoutes");
 const cors = require("cors");
 
 const path = require("path");
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist"))); // or "../frontend/build"
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html")); // or "../frontend/build"
+    res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"));
   });
 }
 
