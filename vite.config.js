@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3001, // Change to your desired port
+    port: parseInt(process.env.VITE_PORT) || 3001, // Use .env variable or fallback
   },
 });
