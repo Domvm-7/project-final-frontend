@@ -1,5 +1,4 @@
-//backend/middleware/authMiddleware.js
-
+// backend/middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
 
 const authenticateToken = (req, res, next) => {
@@ -7,9 +6,9 @@ const authenticateToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Access denied" });
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.status(403).json({ error: "Invalid token" });
-    req.user = user;
+    req.user = decoded; // Contains at least the user's id (and email if you add it)
     next();
   });
 };

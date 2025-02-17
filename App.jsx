@@ -1,12 +1,12 @@
 // frontend/src/App.jsx
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Preloader from "./components/Preloader/Preloader";
-import RegisterModal from "./components/RegisterModal/RegisterModal";
-import LoginModal from "./components/LoginModal/LoginModal";
-import Main from "./components/Main/Main";
+import Header from "./frontend/src/components/Header/Header";
+import Footer from "./frontend/src/components/Footer/Footer";
+import Preloader from "./frontend/src/components/Preloader/Preloader";
+import RegisterModal from "./frontend/src/components/RegisterModal/RegisterModal";
+import LoginModal from "./frontend/src/components/LoginModal/LoginModal";
+import Main from "./frontend/src/components/Main/Main";
 import "./App.css";
 
 function App() {

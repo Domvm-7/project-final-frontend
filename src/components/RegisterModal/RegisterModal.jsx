@@ -1,7 +1,7 @@
-// RegisterModal.jsx
+// frontend/src/components/RegisterModal/RegisterModal.jsx
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { register } from "/src/api/auth.js";
+import { register } from "../../api/auth";
 
 const RegisterModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -11,18 +11,18 @@ const RegisterModal = ({ isOpen, onClose }) => {
     avatar: null,
   });
   const [avatarPreview, setAvatarPreview] = useState(null);
-  const [error, setError] = useState(null); // For error handling
-  const [success, setSuccess] = useState(false); // To track registration success
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFormData({ ...formData, avatar: file });
+      setFormData((prev) => ({ ...prev, avatar: file }));
       const reader = new FileReader();
       reader.onloadend = () => setAvatarPreview(reader.result);
       reader.readAsDataURL(file);
@@ -31,7 +31,6 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const data = new FormData();
     data.append("username", formData.username);
     data.append("email", formData.email);
@@ -39,11 +38,10 @@ const RegisterModal = ({ isOpen, onClose }) => {
     if (formData.avatar) {
       data.append("avatar", formData.avatar);
     }
-
     try {
-      await register(data); // Call the API function from auth.js
+      await register(data);
       setSuccess(true);
-      setError(null);
+      setError("");
       onClose();
     } catch (err) {
       setError(err.response?.data?.error || "Failed to register");
@@ -53,14 +51,9 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        avatar: null,
-      });
+      setFormData({ username: "", email: "", password: "", avatar: null });
       setAvatarPreview(null);
-      setError(null);
+      setError("");
     }
   }, [isOpen]);
 
@@ -70,7 +63,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      name="sign up"
+      name="sign-up"
       title="Sign Up"
     >
       <label className="modal__label">
@@ -81,6 +74,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           name="username"
           placeholder="Username"
           onChange={handleChange}
+          value={formData.username}
           required
         />
       </label>
@@ -92,6 +86,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           name="email"
           placeholder="Email"
           onChange={handleChange}
+          value={formData.email}
           required
         />
       </label>
@@ -103,6 +98,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           name="password"
           placeholder="Password"
           onChange={handleChange}
+          value={formData.password}
           required
         />
       </label>

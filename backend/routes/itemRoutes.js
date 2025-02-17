@@ -1,4 +1,4 @@
-//backend/routes/itemRoutes.js
+// backend/routes/itemRoutes.js
 const express = require("express");
 const {
   addItem,
@@ -16,7 +16,3 @@ router.put("/:id", authenticateToken, updateItem);
 router.delete("/:id", authenticateToken, deleteItem);
 
 module.exports = router;
-
-const authenticateToken = require("../middleware/authMiddleware");
-
-router.post("/items", authenticateToken, addItem);

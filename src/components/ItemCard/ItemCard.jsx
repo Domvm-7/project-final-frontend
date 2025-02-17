@@ -1,13 +1,16 @@
-// ItemCard.jsx
-
+// frontend/src/components/ItemCard/ItemCard.jsx
 import React, { useState, useEffect, useRef } from "react";
 import "./ItemCard.css";
 
-const ItemCard = ({ onDelete }) => {
+const ItemCard = ({ item, onDelete, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [content, setContent] = useState("This is a card. Click to edit.");
+  const [content, setContent] = useState(
+    item.content || "This is a card. Click to edit."
+  );
   const [draftContent, setDraftContent] = useState(content);
-  const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/150");
+  const [imageUrl, setImageUrl] = useState(
+    item.imageUrl || "https://via.placeholder.com/150"
+  );
   const [draftImageUrl, setDraftImageUrl] = useState(imageUrl);
   const textareaRef = useRef(null);
 
@@ -31,6 +34,9 @@ const ItemCard = ({ onDelete }) => {
     setContent(draftContent);
     setImageUrl(draftImageUrl);
     setIsEditing(false);
+    if (onUpdate) {
+      onUpdate({ ...item, content: draftContent, imageUrl: draftImageUrl });
+    }
   };
 
   useEffect(() => {
@@ -42,7 +48,10 @@ const ItemCard = ({ onDelete }) => {
 
   return (
     <div className="item__card">
-      <div className="item__card-content" onClick={handleEdit}>
+      <div
+        className="item__card-content"
+        onClick={!isEditing ? handleEdit : undefined}
+      >
         <img src={imageUrl} alt="Card" className="item__card-image" />
         {!isEditing && <p className="item__card-info">{content}</p>}
       </div>
@@ -50,14 +59,16 @@ const ItemCard = ({ onDelete }) => {
         <div className="item__card-edit">
           <button
             className="item__card-file-button"
-            onClick={() => document.getElementById("fileInput").click()}
+            onClick={() =>
+              document.getElementById(`fileInput-${item.id}`).click()
+            }
           >
             Choose Image
           </button>
           <input
             type="file"
             onChange={handleImageChange}
-            id="fileInput"
+            id={`fileInput-${item.id}`}
             style={{ display: "none" }}
           />
           <textarea
@@ -70,7 +81,10 @@ const ItemCard = ({ onDelete }) => {
           <button className="item__card-submit-button" onClick={handleSave}>
             Save Changes
           </button>
-          <button className="item__card-delete-button" onClick={onDelete}>
+          <button
+            className="item__card-delete-button"
+            onClick={() => onDelete(item.id)}
+          >
             Delete
           </button>
         </div>
